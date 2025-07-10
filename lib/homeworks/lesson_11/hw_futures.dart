@@ -38,11 +38,21 @@ Future<int> measureExecutionTimeParallel(List<Future<String>> ft) async {
   return w.elapsedMilliseconds;
 }
 
+//Task 5: Зворотний відлік з затримкою
+Future<String> delayedCountdown(int seconds) async {
+  for (int i = seconds; i > 0; i--) {
+    await Future.delayed(Duration(seconds: 1));
+    print('${i}... ');
+  }
+
+  return 'Старт!';
+}
+
 void main() async {
   final age = await fetchAge();
   print('Мене звати ${await fetchName()}');
   print('Мені ${age} ${endings[int.parse(age) % 10]}');
   print('Час послідовного виконання обох методів: ${await measureExecutionTime(fetchName, fetchAge)} мс');
   print('Час паралельного виконання обох методів: ${await measureExecutionTimeParallel([fetchName(), fetchAge()])} мс');
-
+  print(await delayedCountdown(10));
 }
