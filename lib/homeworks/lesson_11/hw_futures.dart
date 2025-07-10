@@ -30,11 +30,19 @@ Future<int> measureExecutionTime(Future<String> Function() task1, Future<String>
   return w.elapsedMilliseconds;
 }
 
+//Task 4: Паралельне виконання Future (Future.wai
+Future<int> measureExecutionTimeParallel(List<Future<String>> ft) async {
+  final w = Stopwatch()..start();
+  await Future.wait(ft);
+  w.stop();
+  return w.elapsedMilliseconds;
+}
+
 void main() async {
   final age = await fetchAge();
   print('Мене звати ${await fetchName()}');
   print('Мені ${age} ${endings[int.parse(age) % 10]}');
   print('Час послідовного виконання обох методів: ${await measureExecutionTime(fetchName, fetchAge)} мс');
-
+  print('Час паралельного виконання обох методів: ${await measureExecutionTimeParallel([fetchName(), fetchAge()])} мс');
 
 }
