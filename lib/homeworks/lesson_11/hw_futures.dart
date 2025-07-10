@@ -20,7 +20,7 @@ const y1 = 'рік';
 const y2 = 'роки';
 const y5 = 'років';
 
-const List<String> endings = [y5, y1, y2, y2, y2, y5, y5, y5, y5, y5, y5];
+const List<String> endings = [y5, y1, y2, y2, y2, y5, y5, y5, y5, y5];
 
 //Task 3: Послідовне виконання Future
 Future<int> measureExecutionTime(Future<String> Function() task1, Future<String> Function() task2) async {
